@@ -22,4 +22,5 @@ while (row := koza_app.get_row()) is not None:
 
 
     except:
+        # todo: this is way too broad, I just wanted to get the subset where these paths work
         pass
