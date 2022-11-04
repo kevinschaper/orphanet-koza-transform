@@ -1,0 +1,23 @@
+name: 'orphanet_gene_to_disease'
+
+files:
+  - './data/en_product6.json'
+
+format: 'json'
+
+#json_path:
+#  - 'JDBOR.DisorderList.Disorder'
+
+#required_properties:
+#  - 'OrphaCode'
+#  - 'DisorderGeneAssociationList.DisorderGeneAssociation.Gene'
+
+
+edge_properties:
+  - 'id'
+  - 'subject'
+  - 'predicate'
+  - 'object'
+  - 'category'
+
+transform_mode: 'flat'

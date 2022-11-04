@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "orphanet-koza-transform"
+version = "0.1.0"
+description = "A one-off Koza transform of Orphanet"
+authors = ["Kevin Schaper <kevinschaper@gmail.com>"]
+readme = "README.md"
+packages = [{include = "orphanet_koza_transform"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+koza = "0.2.2"
+kghub-downloader = "^0.3.2"
+yq = "^3.1.0"
+ipython = "^8.6.0"
+biolink-model = "^3.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
