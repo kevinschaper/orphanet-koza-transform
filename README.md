@@ -1,5 +1,5 @@
 # orphanet-koza-transform
-A quick one-off koza transform of Orphanet gene to disease data
+A quick one-off Koza transform of Orphanet gene to disease data
 
 To make it do a thing:
  * poetry install
