@@ -47,9 +47,12 @@ while (row := koza_app.get_row()) is not None:
         # See if there's any overlap between the preferred sources
         # and the available sources first.
         all_assoc_genes = row["DisorderGeneAssociationList"]["DisorderGeneAssociation"]
+        all_assoc_genes = [all_assoc_genes] if isinstance(all_assoc_genes, dict) else all_assoc_genes
         for gene in all_assoc_genes:
             is_preferred_gene = False
+            
             all_ex_refs = gene["Gene"]["ExternalReferenceList"]["ExternalReference"]
+            all_ex_refs = [all_ex_refs] if isinstance(all_ex_refs, dict) else all_ex_refs
             for ref in all_ex_refs:
                 if ref['Source'] in PREFERRED_GENE_SOURCES:
                     source = ref["Source"]
@@ -79,4 +82,5 @@ while (row := koza_app.get_row()) is not None:
 
     except (TypeError, ValueError) as e:
         row_id = row["@id"]
-        print(f"Invalid entry: {e}. See entry {row_id}")
+        count = row["DisorderGeneAssociationList"]["@count"]
+        print(f"Invalid entry: {e}. See entry {row_id}, with {count} gene(s)")
