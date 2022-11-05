@@ -10,9 +10,9 @@ while (row := koza_app.get_row()) is not None:
         disease_id = "Orphanet:" + row["OrphaCode"]
         disease = Disease(
             id = disease_id,
+            name = row['Name']['#text'],
             category = "biolink:Disease"
         )
-
 
         possible_genes = row["DisorderGeneAssociationList"]["DisorderGeneAssociation"]["Gene"]["ExternalReferenceList"][
             "ExternalReference"]

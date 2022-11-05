@@ -14,6 +14,7 @@ format: 'json'
 
 node_properties:
   - 'id'
+  - 'name'
   - 'category'
 
 edge_properties:
