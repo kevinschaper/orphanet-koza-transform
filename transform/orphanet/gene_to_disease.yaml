@@ -12,6 +12,10 @@ format: 'json'
 #  - 'OrphaCode'
 #  - 'DisorderGeneAssociationList.DisorderGeneAssociation.Gene'
 
+node_properties:
+  - 'id'
+  - 'name'
+  - 'category'
 
 edge_properties:
   - 'id'
