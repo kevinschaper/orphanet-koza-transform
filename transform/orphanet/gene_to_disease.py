@@ -1,6 +1,6 @@
 import uuid
 
-from biolink.model import Disease, Gene, Association
+from biolink.pydanticmodel import Disease, Gene, Association
 from koza.cli_runner import get_koza_app
 
 # Options here include:
@@ -38,7 +38,7 @@ while (row := koza_app.get_row()) is not None:
         # Disease
         disease_id = "Orphanet:" + row["OrphaCode"]
         disease = Disease(
-            id=disease_id, name=row["Name"]["#text"], category="biolink:Disease"
+            id=disease_id, name=row["Name"]["#text"], category=["biolink:Disease"]
         )
 
         koza_app.write(disease)
@@ -62,7 +62,7 @@ while (row := koza_app.get_row()) is not None:
             
             if is_preferred_gene:
                 gene_id = source + ":" + ref
-                gene_obj = Gene(id=gene_id, category="biolink:Gene")
+                gene_obj = Gene(id=gene_id, category=["biolink:Gene"])
 
                 # Association
                 orphanet_association_type = gene["DisorderGeneAssociationType"]["Name"]["#text"]
@@ -70,11 +70,14 @@ while (row := koza_app.get_row()) is not None:
                     predicate = RELATION_TYPE_MAP[orphanet_association_type]
                 else:
                     predicate = "biolink:related_to"
+                original_predicate = "Orphanet:" + gene["DisorderGeneAssociationType"]["@id"]
                 association = Association(
                     id="uuid:" + str(uuid.uuid1()),
                     subject=disease.id,
                     predicate=predicate,
-                    category="biolink:Association",
+                    # todo: uncomment once original_predicate on this association is supported by biolink model
+                    # original_predicate=original_predicate,
+                    category=["biolink:Association"],
                     object=gene_obj.id,
                 )
 

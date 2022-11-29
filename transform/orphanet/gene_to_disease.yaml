@@ -23,5 +23,6 @@ edge_properties:
   - 'predicate'
   - 'object'
   - 'category'
+  - 'original_predicate'
 
 transform_mode: 'flat'
